@@ -1,4 +1,0 @@
-hi
-Sample Task 1
-
-Hello World!
