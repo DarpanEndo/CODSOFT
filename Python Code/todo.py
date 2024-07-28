@@ -26,22 +26,46 @@ class todo:
         def add():
             content = self.text.get(1.0, END).strip()
             if content:
+                content = content + " [not done]"
                 self.main_text.insert(END, content)
-                with open('data.txt', 'a') as file:
-                    file.write(content + "\n")
+                with open("data.txt", "a") as file:
+                    file.write(content + '\n')
                 self.text.delete(1.0, END)
 
         def delete():
-            selected_task_index = self.main_text.curselection()
-            if selected_task_index:
-                selected_task = self.main_text.get(selected_task_index)
-                self.main_text.delete(selected_task_index)
-                with open('data.txt', 'r') as f:
+            delete_ = self.main_text.curselection()
+            if delete_:
+                look = self.main_text.get(delete_)
+                self.main_text.delete(delete_)
+                with open("data.txt", "r") as f:
                     lines = f.readlines()
-                with open('data.txt', 'w') as f:
+                with open("data.txt", "w") as f:
                     for line in lines:
-                        if line.strip() != selected_task:
+                        if line.strip() != look:
                             f.write(line)
+        def update():
+            selected_index = self.main_text.curselection()
+            if selected_index:
+                content = self.main_text.get(selected_index)
+                if "[not done]" in content:
+                    new_content = content.replace("[not done]", "[done]")
+                elif "[done]" in content:
+                    new_content = content.replace("[done]", "[not done]")
+                else:
+                    new_content = content + " [done]"
+
+                self.main_text.delete(selected_index)
+                self.main_text.insert(selected_index, new_content)
+
+                with open("data.txt", "r") as f:
+                    lines = f.readlines()
+                with open("data.txt", "w") as f:
+                    for line in lines:
+                        if line.strip() != content:
+                            f.write(line)
+                    f.write(new_content + '\n')
+
+
 
         try:
             with open('data.txt', 'r') as file:
@@ -54,7 +78,10 @@ class todo:
         self.add_button.place(x=30, y=180)
 
         self.delete_button = Button(self.root, text="Delete", font=('Arial', 20, 'bold', 'italic'), width=10, bd=5, bg='pink', fg='black', command=delete)
-        self.delete_button.place(x=30, y=280)
+        self.delete_button.place(x=30, y=250)
+
+        self.button3 = Button(self.root, text="Update", font=('Arial', 20, 'bold', 'italic'),width=10, bd=5, bg="pink", fg="black", command=update)
+        self.button3.place(x=30, y=320)
 
 def main():
     root = Tk()
@@ -63,4 +90,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-0
