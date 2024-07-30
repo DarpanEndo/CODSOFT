@@ -92,16 +92,4 @@ btn_clr.grid(row=6, column=3, columnspan=2)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 root.mainloop()

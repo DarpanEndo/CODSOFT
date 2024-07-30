@@ -1,1 +1,1 @@
-font=('Arial', 25, 'bold', 'underline', 'italic')
+ImageTk

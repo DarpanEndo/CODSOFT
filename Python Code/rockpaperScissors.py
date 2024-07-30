@@ -1,4 +1,4 @@
-from tkinter import*
+from tkinter import *
 from PIL import Image,ImageTk
 from random import randint
 
@@ -114,7 +114,7 @@ def updateChoice(x):
     
 #bttons
 rock = Button(root,width=20,height=2,text="ROCK",bg="lavender",fg="black", command = lambda:updateChoice("rock")).grid(row=2,column=1)
-paper = Button(root,width=20,height=2,text="PAPER",bg="light yellow",fg="black", command = lambda:updateChoice("paper")).grid(row=2,column=2)
+paper = Button(root,width=20,height=2,text="PAPER",bg="pink",fg="black", command = lambda:updateChoice("paper")).grid(row=2,column=2)
 scissor = Button(root,width=20,height=2,text="SCISSOR",bg="light green",fg="black", command = lambda:updateChoice("scissor")).grid(row=2,column=3)
 
 
